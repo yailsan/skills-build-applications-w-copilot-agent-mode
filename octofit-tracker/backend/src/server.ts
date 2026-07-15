@@ -1,8 +1,17 @@
+import cors from 'cors';
 import express from 'express';
 import { Activity, LeaderboardEntry, Team, User, Workout } from './models';
 
 export const createApp = (baseUrl: string, port: number) => {
   const app = express();
+
+  app.use(
+    cors({
+      origin: true,
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    })
+  );
 
   app.use(express.json());
 
