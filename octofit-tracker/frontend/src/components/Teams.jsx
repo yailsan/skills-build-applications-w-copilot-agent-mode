@@ -1,41 +1,5 @@
 import { useEffect, useState } from 'react'
-
-const getApiUrl = (resource) => {
-  const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
-
-  if (codespaceName) {
-    return `https://${codespaceName}-8000.app.github.dev/api/${resource}/`
-  }
-
-  return `http://127.0.0.1:8000/api/${resource}/`
-}
-
-const extractItems = (payload, resource) => {
-  if (Array.isArray(payload)) {
-    return payload
-  }
-
-  if (!payload || typeof payload !== 'object') {
-    return []
-  }
-
-  const candidates = [resource, 'results', 'items', 'data', 'docs', 'records', 'entries']
-
-  for (const candidate of candidates) {
-    const value = payload[candidate]
-    if (Array.isArray(value)) {
-      return value
-    }
-  }
-
-  for (const value of Object.values(payload)) {
-    if (Array.isArray(value)) {
-      return value
-    }
-  }
-
-  return []
-}
+import { getApiUrl, extractItems } from '../utils'
 
 function Teams() {
   const [teams, setTeams] = useState([])
