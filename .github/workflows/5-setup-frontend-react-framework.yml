@@ -12,6 +12,7 @@ permissions:
 
 env:
   STEP_6_FILE: ".github/steps/6-copilot-on-github.md"
+  VITE_CODESPACE_NAME: ${{ secrets.VITE_CODESPACE_NAME }}
 
 jobs:
   find_exercise:
