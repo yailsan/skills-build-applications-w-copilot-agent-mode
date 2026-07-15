@@ -6,6 +6,16 @@ function Users() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
+  const getApiUrl = () => {
+    const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+
+    if (codespaceName) {
+      return `https://${codespaceName}-8000.app.github.dev/api/users`
+    }
+
+    return `http://127.0.0.1:8000/api/users`
+  }
+
   useEffect(() => {
     let isMounted = true
 

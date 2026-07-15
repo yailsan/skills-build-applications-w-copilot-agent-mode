@@ -6,6 +6,16 @@ function Workouts() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
+  const getApiUrl = () => {
+    const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+
+    if (codespaceName) {
+      return `https://${codespaceName}-8000.app.github.dev/api/workouts`
+    }
+
+    return `http://127.0.0.1:8000/api/workouts`
+  }
+
   useEffect(() => {
     let isMounted = true
 

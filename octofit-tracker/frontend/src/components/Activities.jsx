@@ -6,6 +6,16 @@ function Activities() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
+  const getApiUrl = () => {
+    const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+
+    if (codespaceName) {
+      return `https://${codespaceName}-8000.app.github.dev/api/activities`
+    }
+
+    return `http://127.0.0.1:8000/api/activities`
+  }
+
   useEffect(() => {
     let isMounted = true
 
@@ -14,7 +24,7 @@ function Activities() {
       setError('')
 
       try {
-        const response = await fetch(getApiUrl('activities'))
+        const response = await fetch(getApiUrl())
 
         if (!response.ok) {
           throw new Error(`Unable to load activities (${response.status})`)
