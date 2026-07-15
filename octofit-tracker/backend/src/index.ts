@@ -4,9 +4,9 @@ import { Activity, LeaderboardEntry, Team, User, Workout } from './models';
 
 const app = express();
 const port = Number(process.env.PORT || 8000);
-const codespaceName = process.env.CODESPACE_NAME;
-const baseUrl = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev`
+const codespaceNameEnv = process.env.CODESPACE_NAME;
+const baseUrl = codespaceNameEnv
+  ? `https://${codespaceNameEnv}-8000.app.github.dev`
   : `http://localhost:${port}`;
 
 app.use(express.json());
