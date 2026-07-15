@@ -1,3 +1,13 @@
+// Provide a minimal declaration for ImportMeta.env to satisfy TypeScript
+declare global {
+  interface ImportMeta {
+    readonly env: {
+      VITE_CODESPACE_NAME?: string
+      [key: string]: unknown
+    }
+  }
+}
+
 export const getApiUrl = (resource: string): string => {
   const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
 
